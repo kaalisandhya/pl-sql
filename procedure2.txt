@@ -1,0 +1,81 @@
+1.CREATE OR REPLACE PROCEDURE cloud
+AS 
+BEGIN 
+   dbms_output.put_line('Hello procedure'); 
+END; 
+/
+Procedure created.
+
+0.04 seconds
+BEGIN 
+   cloud; 
+END; 
+/
+Hello procedure
+
+Statement processed.
+
+0.25 seconds
+2.DROP PROCEDURE cloud; 
+Procedure dropped.
+
+0.05 seconds
+3.DECLARE 
+   a number; 
+PROCEDURE squareNum(s IN OUT number) IS 
+BEGIN 
+  s := s * s; 
+END;  
+BEGIN 
+   a:= 23; 
+   squareNum(a); 
+   dbms_output.put_line(' Square of (23): ' || a); 
+END; 
+/
+Square of (23): 529
+
+Statement processed.
+
+0.01 seconds
+4.DECLARE 
+   a number; 
+   b number; 
+   c number;
+PROCEDURE findMin(p IN number, q IN number, r OUT number) IS 
+BEGIN 
+   IF p < q THEN 
+      r:= p; 
+   ELSE 
+      r:= q; 
+   END IF; 
+END;   
+BEGIN 
+   a:= 23; 
+   b:= 45; 
+   findMin(a, b, c); 
+   dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
+END; 
+/
+Minimum of (23, 45) : 23
+
+Statement processed.
+
+0.01 seconds
+5.CREATE OR REPLACE PROCEDURE course
+AS 
+BEGIN 
+   dbms_output.put_line('course is procedure'); 
+END; 
+/
+Procedure created.
+
+0.05 seconds
+BEGIN 
+   course;
+END; 
+/
+course is procedure.
+
+Statement processed.
+
+0.01 seconds

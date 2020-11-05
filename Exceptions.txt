@@ -1,0 +1,115 @@
+mysql> drop table emp;
+Query OK, 0 rows affected (2.23 sec)
+
+mysql> create table Emp(
+    ->     ID int,
+    ->     Name varchar(20),
+    ->     Age int,
+    ->     Address varchar(20),
+    ->     Salary int
+    ->      );
+Query OK, 0 rows affected (1.83 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(1,'teju',23,'rajampet',20000);
+Query OK, 1 row affected (0.35 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(2,'navya',24,'kadapa',22000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(3,'Rani',25,'Khamam',25000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(4,'akash',29,'Kodur',29000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(5,'neha',29,'rajamandri',39000);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from emp;
++------+-------+------+------------+--------+
+| ID   | Name  | Age  | Address    | Salary |
++------+-------+------+------------+--------+
+|    1 | teju  |   23 | rajampet   |  20000 |
+|    2 | navya |   24 | kadapa     |  22000 |
+|    3 | Rani  |   25 | Khamam     |  25000 |
+|    4 | akash |   29 | Kodur      |  29000 |
+|    5 | neha  |   29 | rajamandri |  39000 |
++------+-------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+create table customers(id int,
+name varchar(30),
+address varchar(30));
+Table created.
+0.09 seconds
+
+insert into customers(id,name,address)
+values(1,'mounya','rajampet');
+insert into customers(id,name,address)
+values(2,'kavya','rajamandri');
+insert into customers(id,name,address)
+values(3,'tulsi','rayachoti');
+insert into customers(id,name,address)
+values(4,'sandhya','kadapa');
+insert into customers(id,name,address)
+values(5,'teju','rajampet');
+
+select * from customers;
+
+ID	NAME	ADDRESS
+1	mounya	rajampet
+2	kavya	rajamandri
+3	tulsi	rayachoti
+4	sandhya	kadapa
+5	teju	rajampet
+
+DECLARE  
+   c_id customers.id%type := 8;  
+   c_name  customers.name%type;  
+   c_addr customers.address%type;  
+BEGIN  
+   SELECT  name, address INTO  c_name, c_addr  
+   FROM customers  
+   WHERE id = c_id;  
+DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+ DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);  
+EXCEPTION  
+   WHEN no_data_found THEN  
+      dbms_output.put_line('No such customer!');  
+   WHEN others THEN  
+      dbms_output.put_line('Error!');  
+END;  
+/ 
+No such customer!
+
+Statement processed.
+
+DECLARE  
+   c_id customers.id%type := 5;  
+   c_name  customers.name%type;  
+   c_addr customers.address%type;  
+BEGIN  
+   SELECT  name, address INTO  c_name, c_addr  
+   FROM customers  
+   WHERE id = c_id;  
+DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+ DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);  
+EXCEPTION  
+   WHEN no_data_found THEN  
+      dbms_output.put_line('No such customer!');  
+   WHEN others THEN  
+      dbms_output.put_line('Error!');  
+END;  
+/   
+name: teju
+address: Rajampet
+PL/SQL procedure successfully completed.
+

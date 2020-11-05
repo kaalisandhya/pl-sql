@@ -1,0 +1,67 @@
+create table emp_source(e_id numeric(10),
+e_name varchar(30),
+e_salary numeric(30),
+e_age numeric(10),
+e_gender char(10),
+e_dept varchar(20));
+
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(1,'san',92000,40,'male','operator');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(1,'san',92000,40,'male','operator');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(2,'bob',80000,21,'male','support');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(3,'arre',130000,25,'female','analytics');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(6,'jeff',112000,27,'male','operator');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(7,'adan',100000,28,'male','conent');
+insert into emp_source(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(8,'priya',85000,40,'female','tech');
+
+select * from emp_source;
+
+1	san	92000	40	male	operator
+2	bob	80000	21	male	support
+3	arre	130000	25	female	analytics
+6	jeff	112000	27	male	operator
+7	adan	100000	28	male	conent
+8	priya	85000	40	female	tech
+
+create table emp_target(e_id numeric(10),
+e_name varchar(30),
+e_salary numeric(30),
+e_age numeric(10),
+e_gender char(10),
+e_dept varchar(20));
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(1,'san',92000,40,'male','operator');
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(2,'bob',80000,21,'male','support');
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(3,'arre',130000,25,'female','analytics');
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(4,'juli',73000,30,'female','analytics');
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(5,'matt',159000,33,'male','sales');
+insert into emp_target(e_id,e_name,e_salary,e_age,e_gender,e_dept)
+values(6,'jeff',73000,27,'male','operator');
+select * from emp_target;
+1	san	92000	40	male      	operator
+2	bob	80000	21	male      	support
+3	arre	130000	25	female    	analytics
+4	juli	73000	30	female    	analytics
+5	matt	159000	33	male      	sales
+6	jeff	73000	27	male      	operator
+merge emp_target as t
+using emp_source as s
+on t.e_id=s.e_id
+when matched
+then update set t.e_salary=s.e_salary,t.e_age=s.e_age
+when not matched by target
+then insert(e_id,e_name,e_salary,e_gender,e_dept)
+values(s.e_id,s.e_name,s.e_salary,s.e_age,s.e_gender,s.e_dept)
+when not matched by source
+then delete;
+select * from emp_target;

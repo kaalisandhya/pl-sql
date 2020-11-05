@@ -1,0 +1,196 @@
+DECLARE  
+   S number(3) := 15;  
+BEGIN   
+   IF( S < 20 ) THEN  
+      dbms_output.put_line('S is less than 20 ' );  
+   ELSE  
+      dbms_output.put_line('S is not less than 20 ' );  
+   END IF;  
+   dbms_output.put_line('value of S is :'||S);  
+END;  
+S is less than 20 
+value of S is :15
+
+Statement processed.
+
+0.00 seconds
+DECLARE  
+   S number(3) := 30;  
+BEGIN   
+   IF( S < 20 ) THEN  
+      dbms_output.put_line('S is less than 20 ' );  
+   ELSE  
+      dbms_output.put_line('S is not less than 20 ' );  
+   END IF;  
+   dbms_output.put_line('value of S is :'||S);  
+END;  
+S is not less than 20 
+value of S is :30
+
+Statement processed.
+
+0.00 seconds
+DECLARE  
+   grade char(1) := ' ';  
+BEGIN  
+   CASE grade  
+      when 'X' then dbms_output.put_line('first class');  
+      when 'Y' then dbms_output.put_line('second class');  
+      when 'Z' then dbms_output.put_line('pass');  
+      else dbms_output.put_line('Failed');  
+   END CASE;  
+END;
+Failed
+
+Statement processed.
+
+0.01 seconds
+DECLARE  
+S NUMBER := 5;  
+BEGIN  
+LOOP  
+EXIT WHEN S>15;  
+DBMS_OUTPUT.PUT_LINE(S);  
+S := S+1;  
+END LOOP;  
+END; 
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+Statement processed.
+
+0.01 seconds
+DECLARE  
+S INTEGER := 200;  
+BEGIN  
+WHILE S <= 210 LOOP  
+DBMS_OUTPUT.PUT_LINE(S);  
+S := S+1;  
+END LOOP;  
+END;  
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+
+Statement processed.
+
+0.01 seconds
+BEGIN  
+FOR k IN 300..310 LOOP  
+DBMS_OUTPUT.PUT_LINE(k);  
+END LOOP;  
+END;   
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+
+Statement processed.
+
+0.00 seconds
+DECLARE 
+   S number(1); 
+   K number(1); 
+BEGIN 
+   << outer_loop >> 
+   FOR S IN 1..3 LOOP 
+      << inner_loop >> 
+      FOR K IN 1..3 LOOP 
+         dbms_output.put_line('S is: '|| S || ' and K is: ' || K); 
+      END loop inner_loop; 
+   END loop outer_loop; 
+END; 
+/
+S is: 1 and K is: 1
+S is: 1 and K is: 2
+S is: 1 and K is: 3
+S is: 2 and K is: 1
+S is: 2 and K is: 2
+S is: 2 and K is: 3
+S is: 3 and K is: 1
+S is: 3 and K is: 2
+S is: 3 and K is: 3
+
+Statement processed.
+
+0.01 seconds
+DECLARE 
+   name varchar2(20); 
+   company varchar2(30); 
+   introduction clob; 
+   choice char(1); 
+BEGIN 
+   name := 'supriya'; 
+   company := 'kloudone'; 
+   introduction := 'Hello! I''m supriya from kloudone'; 
+   choice := 'y'; 
+   IF choice = 'y' THEN 
+      dbms_output.put_line(name); 
+      dbms_output.put_line(company); 
+      dbms_output.put_line(introduction); 
+   END IF; 
+END; 
+/
+supriya
+kloudone
+Hello! I'm supriya from kloudone
+
+Statement processed.
+
+0.00 seconds
+DECLARE 
+   type namesarray IS VARRAY(5) OF VARCHAR2(10); 
+   type grades IS VARRAY(5) OF INTEGER; 
+   names namesarray; 
+   marks grades; 
+   total integer; 
+BEGIN 
+   names := namesarray('sandhya', 'keerthi', 'adarsh', 'Reyan', 'neha'); 
+   marks:= grades(98, 97, 78, 87, 92); 
+   total := names.count; 
+   dbms_output.put_line('Total '|| total || ' Students'); 
+   FOR i in 1 .. total LOOP 
+      dbms_output.put_line('Student: ' || names(i) || ' 
+      Marks: ' || marks(i)); 
+   END LOOP; 
+END; 
+/
+Total 5 Students
+Student: sandhya 
+      Marks: 98
+Student: keerthi 
+      Marks: 97
+Student: adarsh 
+      Marks: 78
+Student: Reyan 
+      Marks: 87
+Student: neha 
+      Marks: 92
+
+Statement processed.
+
+0.01 seconds

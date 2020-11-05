@@ -1,0 +1,47 @@
+CREATE TABLE employee_history (
+      name VARCHAR2(100),
+     description VARCHAR2(255),
+      occurred_on DATE);
+Table created.
+
+CREATE TABLE employee_compensation (
+    company VARCHAR2(100),
+   name VARCHAR2(100),
+   compensation NUMBER,
+   layoffs NUMBER);
+Table created.
+
+CREATE OR REPLACE PROCEDURE employee_audit (
+      name IN VARCHAR2,
+    description IN VARCHAR2,
+    occurred_on IN DATE)
+        IS
+   PRAGMA AUTONOMOUS_TRANSACTION;
+  BEGIN
+    INSERT INTO employee_history VALUES (
+      employee_audit.name,
+    employee_audit.description,
+    employee_audit.occurred_on);
+      COMMIT;
+  END;
+  /
+Procedure created.
+CREATE OR REPLACE TRIGGER bef_ins_ceo_comp
+   BEFORE INSERT ON employee_compensation FOR EACH ROW
+  DECLARE
+    ok BOOLEAN := TRUE;
+   BEGIN
+     IF ok
+     THEN
+        employee_audit (
+           :new.name, 'BEFORE INSERT', SYSDATE);
+     END IF;
+  END;
+  /
+Trigger created.
+SELECT name,
+      description,
+      TO_CHAR (occurred_on, 'MM/DD/YYYY HH:MI:SS') occurred_on
+      FROM employee_history;
+
+no rows selected

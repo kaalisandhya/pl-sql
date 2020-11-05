@@ -1,0 +1,139 @@
+mysql> drop table emp;
+Query OK, 0 rows affected (2.23 sec)
+
+mysql> create table Emp(
+    ->     ID int,
+    ->     Name varchar(20),
+    ->     Age int,
+    ->     Address varchar(20),
+    ->     Salary int
+    ->      );
+Query OK, 0 rows affected (1.83 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(1,'teju',23,'rajampet',20000);
+Query OK, 1 row affected (0.35 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(2,'navya',24,'kadapa',22000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(3,'Rani',25,'Khamam',25000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(4,'akash',29,'Kodur',29000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Emp(ID,Name,Age,Address,Salary)
+values(5,'neha',29,'rajamandri',39000);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from emp;
++------+-------+------+------------+--------+
+| ID   | Name  | Age  | Address    | Salary |
++------+-------+------+------------+--------+
+|    1 | teju  |   23 | rajampet   |  20000 |
+|    2 | navya |   24 | kadapa     |  22000 |
+|    3 | Rani  |   25 | Khamam     |  25000 |
+|    4 | akash |   29 | Kodur      |  29000 |
+|    5 | neha  |   29 | rajamandri |  39000 |
++------+-------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+create table customers(id int,
+name varchar(30),
+address varchar(30));
+Table created.
+0.09 seconds
+
+insert into customers(id,name,address)
+values(1,'mounya','rajampet');
+insert into customers(id,name,address)
+values(2,'kavya','rajamandri');
+insert into customers(id,name,address)
+values(3,'tulsi','rayachoti');
+insert into customers(id,name,address)
+values(4,'sandhya','kadapa');
+insert into customers(id,name,address)
+values(5,'teju','rajampet');
+
+select * from customers;
+
+ID	NAME	ADDRESS
+1	mounya	rajampet
+2	kavya	rajamandri
+3	tulsi	rayachoti
+4	sandhya	kadapa
+5	teju	rajampet
+1.DECLARE   
+   total_rows number(2);  
+BEGIN  
+   UPDATE  customers  
+   SET salary = salary + 5000;  
+   IF sql%notfound THEN  
+      dbms_output.put_line('no customers updated');  
+   ELSIF sql%found THEN  
+      total_rows := sql%rowcount;  
+      dbms_output.put_line( total_rows || ' customers updated ');  
+   END IF;   
+END;  
+/  
+
+5 customers updated
+PL/SQL procedure successfully completed.
+mysql>
+
+create table customers(id int,
+name varchar(30),
+address varchar(30));
+Table created.
+0.09 seconds
+
+insert into customers(id,name,address)
+values(1,'mounya','rajampet');
+insert into customers(id,name,address)
+values(2,'kavya','rajamandri');
+insert into customers(id,name,address)
+values(3,'tulsi','rayachoti');
+insert into customers(id,name,address)
+values(4,'sandhya','kadapa');
+insert into customers(id,name,address)
+values(5,'teju','rajampet');
+
+select * from customers;
+
+ID	NAME	ADDRESS
+1	mounya	rajampet
+2	kavya	rajamandri
+3	tulsi	rayachoti
+4	sandhya	kadapa
+5	teju	rajampet
+2.DECLARE  
+   c_id customers.id%type;  
+   c_name customers.name%type;  
+   c_addr customers.address%type;  
+   CURSOR c_customers is  
+      SELECT id, name, address FROM customers;  
+BEGIN  
+   OPEN c_customers;  
+   LOOP  
+      FETCH c_customers into c_id, c_name, c_addr;  
+      EXIT WHEN c_customers%notfound;  
+      dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr);  
+   END LOOP;  
+   CLOSE c_customers;  
+END;  
+/  
+1	mounya	rajampet
+2	kavya	rajamandri
+3	tulsi	rayachoti
+4	sandhya	kadapa
+5	teju	rajampet
+Statement processed.
+
+0.02 seconds
